@@ -1,24 +1,19 @@
 import type { Metadata } from "next";
-import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
 import "../globals.css";
-import dynamic from "next/dynamic";
 
-const Header = dynamic(() => import("@/components/shared/Header"));
-const LeftSideBar = dynamic(() => import("@/components/shared/LeftSideBar"), {
-  ssr: false,
-});
-const RightSideBar = dynamic(() => import("@/components/shared/RightSideBar"), {
-  ssr: false,
-});
-const Footer = dynamic(() => import("@/components/shared/Footer"));
-
-const inter = Inter({ subsets: ["latin"] });
+import Header from "@/components/shared/Header";
+import LeftSideBar from "@/components/shared/LeftSideBar";
+import RightSideBar from "@/components/shared/RightSideBar";
+import Footer from "@/components/shared/Footer";
+import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
   title: "Threads",
   description: "A Next.js 15 Meta Threads application",
 };
+
+const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -35,7 +30,7 @@ export default function RootLayout({
           <main className="flex flex-row">
             <LeftSideBar />
             <section className="main-container">
-              <div className="children-container">
+              <div className="w-full max-w-4xl">
                 {children || <p>No content</p>}
               </div>
             </section>
